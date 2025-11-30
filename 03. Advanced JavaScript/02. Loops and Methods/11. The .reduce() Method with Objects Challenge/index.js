@@ -1,4 +1,4 @@
-import { itemsBoughtArr } from '/itemsBoughtArr.js'
+import { itemsBoughtArr } from './itemsBoughtArr.js'
 
 function calculateTotalCost(itemsBoughtArr){
 /*
@@ -6,7 +6,7 @@ Challenge:
 1. Use the reduce method to calculate the total 
    cost of items which have been bought.
 */
-    const total = 
+    const total = itemsBoughtArr.reduce((sum, item)=> sum + item.priceUSD, 0)
     return total
 }
 

@@ -7,9 +7,7 @@ Challenge:
    logic in this function to just one line 
    of code.
 */
-    if (age >= 18){
-        return true
-    }
+    return age >= 18
 })
 
 console.log(adults)

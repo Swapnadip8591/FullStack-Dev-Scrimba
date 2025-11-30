@@ -5,6 +5,7 @@ Challenge
 1. Use the .reduce() method to find the total of all of the students grades.
 2. Do some simple maths to log out the class average. 
 */
+const avgGrade = grades.reduce((sum, grd)=> sum + grd, 0)/ grades.length
 
 
-console.log(`The class average is ????`)
+console.log(`The class average is ${avgGrade}`)
