@@ -8,23 +8,26 @@ const PORT = 8000
 const server = http.createServer(async (req, res) => {
   const destinations = await getDataFromDB()
 
+  const urlObj = new URL(req.url, `http://${req.headers.host}`)
+
+  const queryObj = Object.fromEntries(urlObj.searchParams)
+
 /*
-  Challenge:
-  1. Complete the two lines of code below.
-     hint.md for help!
+Challenge:
+  1. Have a look through the urlObj and find a property which we 
+     can use instead of req.url. We need something that will 
+     satisfy the condition regardless of whether query params were used.
 */
 
-  const urlObj = // Use the URL constructor and pass in the relative and base urls.
 
-  const queryObj = // Use the fromEntries() method on the Object class .
-                   // What do you need to pass in? 
+  if (urlObj.pathname === '/api' && req.method === 'GET') {
+    
+    let filteredDestinations = destinations
 
-  console.log(queryObj)
+    console.log(queryObj)
+    // update filteredDestinations
 
-
-  if (req.url === '/api' && req.method === 'GET') {
-
-    sendJSONResponse(res, 200, destinations)
+    sendJSONResponse(res, 200, filteredDestinations)
 
   } else if (req.url.startsWith('/api/continent') && req.method === 'GET') {
 

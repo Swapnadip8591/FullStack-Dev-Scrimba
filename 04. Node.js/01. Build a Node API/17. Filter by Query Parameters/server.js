@@ -15,8 +15,8 @@ const server = http.createServer(async (req, res) => {
 
   if (urlObj.pathname === '/api' && req.method === 'GET') {
     
-    let filteredData = destinations
-  
+    let filteredData = getDataByQueryParams(destinations, queryObj)
+
 /*
 Challenge:
 
