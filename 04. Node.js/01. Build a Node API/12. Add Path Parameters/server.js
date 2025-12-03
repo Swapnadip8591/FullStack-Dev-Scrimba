@@ -10,7 +10,7 @@ const server = http.createServer(async (req, res) => {
     res.setHeader('Content-Type', 'application/json')
     res.statusCode = 200
     res.end(JSON.stringify(destinations))
-  } else if (x) {
+  } else if (req.url.startsWith("/api/continent") && req.method === 'GET') {
   /*
   Challenge:
   1. Check if the url starts with “/api/continent”.
@@ -20,7 +20,12 @@ const server = http.createServer(async (req, res) => {
     (How can you get to what comes after the final slash?)
     (What method can you use to filter data?)
   */
-    } else {
+    const key = req.url.split("/").pop()
+    const result = destinations.filter((dest)=> dest.continent.toLowerCase() === key.toLowerCase())
+    res.setHeader('Content-Type', 'application/json')
+    res.statusCode = 200
+    res.end(JSON.stringify(result))
+  } else {
     res.setHeader('Content-Type', 'application/json')
     res.statusCode = 404
     res.end(JSON.stringify({

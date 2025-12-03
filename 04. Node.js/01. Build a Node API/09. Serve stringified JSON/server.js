@@ -1,8 +1,9 @@
 import http from 'node:http'
+import { getDataFromDB } from './database/db.js'
  
 const PORT = 8000
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
 
 /*
 Challenge:
@@ -10,9 +11,9 @@ Challenge:
   2. When a GET request is received to the ‘/api' endpoint, send our JSON stringified data.
     Think: What changes will you need to make to get this to work?
 */
-
+  const destination =  await getDataFromDB()
   if (req.url === '/api' && req.method === 'GET') {
-    res.end('This is from the server')
+    res.end(JSON.stringify(destination))
   }
 })
 
