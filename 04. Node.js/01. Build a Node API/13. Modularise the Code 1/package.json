@@ -1,0 +1,20 @@
+{
+  "name": "wild-horizons",
+  "version": "1.0.0",
+  "description": "a dataset of the planet’s most interesting places",
+  "homepage": "https://github.com/Swapnadip8591/FullStack-Dev-Scrimba#readme",
+  "bugs": {
+    "url": "https://github.com/Swapnadip8591/FullStack-Dev-Scrimba/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swapnadip8591/FullStack-Dev-Scrimba.git"
+  },
+  "license": "ISC",
+  "author": "Dip",
+  "type": "module",
+  "main": "./server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
