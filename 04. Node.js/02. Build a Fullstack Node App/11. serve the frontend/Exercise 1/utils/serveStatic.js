@@ -11,12 +11,15 @@ Challenge:
      Don’t worry about handling errors for now.
      hint.md for help!
 */
-
-  const filePath = path.join(baseDir, 'public', 'index.html')
+  const mainDir = path.join(baseDir, 'public')
+  const filePath = path.join(
+    mainDir, 
+    req.url === '/' ? 'index.html' : req.url)
+  const contentType = getContentType(path.extname(filePath))
 
   try { 
     const content = await fs.readFile(filePath)
-    sendResponse(res, 200, 'text/html', content)
+    sendResponse(res, 200, contentType, content)
 
   } catch (err) {
     console.log(err)

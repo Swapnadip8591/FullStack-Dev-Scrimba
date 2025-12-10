@@ -4,22 +4,32 @@ import { sendResponse } from './sendResponse.js'
 import { getContentType } from './getContentType.js'
 
 export async function serveStatic(req, res, baseDir) {
-  /*
-Challenge: 
-  1. Write code below to serve files from our public directory.
-     
-     Don’t worry about handling errors for now.
-     hint.md for help!
-*/
-
-  const filePath = path.join(baseDir, 'public', 'index.html')
+ 
+  const mainDir = path.join(baseDir, 'public')
+  const filePath = path.join(
+    mainDir, 
+    req.url === '/' ? 'index.html' : req.url)
+  const contentType = getContentType(path.extname(filePath))
 
   try { 
     const content = await fs.readFile(filePath)
-    sendResponse(res, 200, 'text/html', content)
+    sendResponse(res, 200, contentType, content)
 
+/*
+Challenge:
+
+ If the error code is “ENOENT”, serve the 404.html page.  
+ If there’s another error, serve a 500 with this string: 
+ `<html><h1>Server Error: ${err.code}</h1></html>`. 
+
+The Content-Type for the 500 can be ‘text/html’.
+*/
   } catch (err) {
-    console.log(err)
+    if (err.code === 'ENOENT'){
+      const content = await fs.readFile(path.join(mainDir, '404.html'))
+      sendResponse(res, 404, 'text/html', content)
+    } else {
+      sendResponse(res, 500, 'text/html', `<html><h1>Server Error: ${err.code}</h1></html>`)
+    }
   }
-
 }
