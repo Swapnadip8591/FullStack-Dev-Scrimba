@@ -57,6 +57,7 @@ import fs from 'fs';
           ('Porsche', '911 Turbo', 1995, 12000, 'black', 1, false),
           ('Porsche', '944 Turbo', 1986, 48000, 'white', 4, true),
           ('Porsche', '356B', 1960, 265000, 'silver', 4, false),
+          ('Mercedes-Benz', '300SLR', 1955, 142000000, 'silver', 5, false),
           ('Bentley', 'T2', 1978, 52000, 'silver', 4, false);
 `);
 
