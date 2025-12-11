@@ -1,5 +1,6 @@
 // handleGet
-
+import { getData } from '../utils/getData.js'
+import { sendResponse } from '../utils/sendResponse.js'
 /*
 Challenge:
 1. Export a function called handleGet(). 
@@ -10,5 +11,9 @@ Challenge:
    
 Open the browser and load the sightings page to see if it works.
 */
+export  async function handleGet(res){
+   const data = JSON.stringify(await getData())
+   sendResponse(res, 200, 'application/json', data)
+}
 
 // handlePost

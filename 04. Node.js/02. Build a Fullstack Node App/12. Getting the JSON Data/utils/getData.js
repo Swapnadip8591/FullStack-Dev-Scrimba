@@ -24,6 +24,4 @@ export async function getData() {
   
   hint.md for help
   */
-
-  return 'I am from getData()!'
 }

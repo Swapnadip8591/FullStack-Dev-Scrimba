@@ -1,4 +1,9 @@
-function addNewSighting(newSighting) {
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { getData } from "./getData.js"
+import { error } from 'node:console'
+
+export async function addNewSighting(newSighting) {
 
   try {
 /*
@@ -17,9 +22,13 @@ function addNewSighting(newSighting) {
     
     Bonus: figure out how to prettify the JSON!
     Remember to uncomment the import statement in routeHandler.js!!
-*/
-  } catch (err) {
+*/  
+    let fileData = await getData()
+    fileData.push(newSighting)
+    await fs.writeFile(path.join('data', 'data.json'), JSON.stringify(fileData, null, 2))
 
+  } catch (err) {
+      throw new Error({error: err})
   }
 
 }

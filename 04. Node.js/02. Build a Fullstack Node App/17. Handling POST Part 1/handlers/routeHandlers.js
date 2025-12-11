@@ -1,17 +1,29 @@
 import { getData } from '../utils/getData.js'
 import { sendResponse } from '../utils/sendResponse.js'
 import { parseJSONBody } from '../utils/parseJSONBody.js'
+// import { addNewSighting } from '../utils/addNewSighting.js'
 
-export async function handleGet(res) { 
+export async function handleGet(res) {
   const data = await getData()
   const content = JSON.stringify(data)
   sendResponse(res, 200, 'application/json', content)
-}  
+}
 
-export async function handlePost(req, res) { 
+export async function handlePost(req, res) {
 
-   const parsedBody = await parseJSONBody(req)
+/*
+Challenge:
+  1. Replace ??? with the correct status code!
+*/
 
-} 
+  try {
+    const parsedBody = await parseJSONBody(req)
+    await addNewSighting(parsedBody)
+    sendResponse(res, 201, 'application/json', JSON.stringify(parsedBody))
+  } catch (err) {
+    sendResponse(res, 404, 'application/json', JSON.stringify({error: err}))
+  }
+
+}
 
 
