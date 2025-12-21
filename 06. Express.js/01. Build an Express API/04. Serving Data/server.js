@@ -11,6 +11,9 @@ Challenge:
 
   hint.md for help!
 */
+app.get('/',(req, res)=>{
+  res.json(startups)
+})
 
 app.listen(PORT, () => console.log(`server connected on port ${PORT}`))
 

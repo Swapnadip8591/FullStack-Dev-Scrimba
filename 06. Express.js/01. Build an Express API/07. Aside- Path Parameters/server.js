@@ -11,7 +11,7 @@ But a GET request to api/crypto/eth
     logs an object {category: crypto-name, type: eth}
 */
 
-app.get('/api/crypto-name/:currency', (req, res) => {
+app.get('/api/:category/:type', (req, res) => {
 
     console.log(req.params)
     res.json()

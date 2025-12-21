@@ -49,6 +49,7 @@ app.get('/api', (req, res) => {
 app.get('/api/:field/:term', (req, res) => {
   
   const { field, term } = req.params
+  const allowedFields = ['country', 'continent', 'industry']
 
 /*
 Challenge:
@@ -60,13 +61,16 @@ Challenge:
 
 hint.md for help!
 */
+  if (allowedFields.includes(field.toLocaleLowerCase())){
+    const filteredData = startups.filter(
+      startup => startup[field].toLowerCase() === term.toLowerCase()
+    )
 
-  const filteredData = startups.filter(
-    startup => startup[field].toLowerCase() === term.toLowerCase()
-  )
-
-  res.json(filteredData)
-
+    res.json(filteredData)
+  } else{
+    res.status(403)
+    res.json({message: "Search field not allowed. Please use only 'country', 'continent', 'industry'" })
+  }
 })
 
 /*

@@ -6,6 +6,7 @@ const PORT = 8000
 const app = express()
 
 app.get('/api', (req, res) => {
+  let filteredData = startups
 /*
 Challenge:
 1. When a user hits the /api endpoint with query params, filter the data so 
@@ -25,8 +26,68 @@ Test Cases
 /api?continent=asia&is_seeking_funding=true&has_mvp=true
   should get for objects with IDs 3, 22, 26, 29
 */
+  const { industry, country, continent, is_seeking_funding, has_mvp } = req.query
 
-  res.json(startups)
+  // if (industry) {
+  //   filteredData = filteredData.filter(
+  //     data => data.industry.toLowerCase() === industry.toLowerCase()
+  //   )
+  // }
+
+  // if (country) {
+  //   filteredData = filteredData.filter(
+  //     data => data.country.toLowerCase() === country.toLowerCase()
+  //   )
+  // }
+
+  // if (continent) {
+  //   filteredData = filteredData.filter(
+  //     data => data.continent.toLowerCase() === continent.toLowerCase()
+  //   )
+  // }
+
+  // if (is_seeking_funding) {
+  //   filteredData = filteredData.filter(
+  //     data => data.is_seeking_funding === JSON.parse(is_seeking_funding.toLowerCase())
+  //   )
+  // }
+
+  // if (has_mvp) {
+  //   filteredData = filteredData.filter(
+  //     data => data.has_mvp === JSON.parse(has_mvp.toLowerCase())
+  //   )
+  // }
+
+  if (industry) {
+    filteredData = filteredData.filter( startup => 
+      startup.industry.toLowerCase() === industry.toLowerCase()
+    )
+  }
+
+  if (country) {
+    filteredData = filteredData.filter( startup => 
+      startup.country.toLowerCase() === country.toLowerCase()
+    )
+  }
+  
+  if (continent) {
+    filteredData = filteredData.filter( startup => 
+      startup.continent.toLowerCase() === continent.toLowerCase()
+    )
+  }
+
+  if (is_seeking_funding) {
+    filteredData = filteredData.filter( startup => 
+      startup.is_seeking_funding === JSON.parse(is_seeking_funding.toLowerCase())
+    )
+  }
+  
+  if (has_mvp) {
+    filteredData = filteredData.filter( startup => 
+      startup.has_mvp === JSON.parse(has_mvp.toLowerCase())
+    )
+  }
+  res.json(filteredData)
 
 })
 

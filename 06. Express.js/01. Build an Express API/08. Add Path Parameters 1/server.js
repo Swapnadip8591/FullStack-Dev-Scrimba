@@ -69,6 +69,12 @@ This will throw an error - but that's fine!
 	api/has_mvp/true
 
 */
+app.get('/api/:field/:term', (req, res)=>{
+  const filteredData = startups.filter(data=>
+    data[req.params.field].toLowerCase() === req.params.term.toLocaleLowerCase()
+  )
+  res.json(filteredData)
+})
 
 
 
