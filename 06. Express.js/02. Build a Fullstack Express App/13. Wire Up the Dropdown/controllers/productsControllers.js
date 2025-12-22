@@ -47,7 +47,6 @@ Example incoming query: '?genre=rock'
 
 
 
-
     res.json(products)
 
 
