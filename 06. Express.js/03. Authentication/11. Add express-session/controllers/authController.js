@@ -42,7 +42,7 @@ export async function registerUser(req, res) {
     const hashed = await bcrypt.hash(password, 10)
 
     const result = await db.run('INSERT INTO users (name, email, username, password) VALUES (?, ?, ?, ?)', [name, email, username, hashed])
-    console.log(result)
+    req.session.userId = result.lastID
     
 
 /*

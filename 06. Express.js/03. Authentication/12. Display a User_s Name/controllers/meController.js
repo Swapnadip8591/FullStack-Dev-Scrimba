@@ -11,6 +11,12 @@ Challenge:
   3. End the response with the following JSON:
   { isLoggedIn: true, name: <user's name here> }
 */
+    if (req.session.userId){
+      const user = await db.get('SELECT name FROM users WHERE id = ?', [req.session.userId])
+      res.json({ isLoggedIn: true, name: user.name })
+    } else {
+      res.json({ isLoggedIn: false })
+    }
 
   } catch (err) {
     console.error('getCurrentUser error:', err);

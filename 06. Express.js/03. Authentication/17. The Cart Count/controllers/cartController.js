@@ -40,6 +40,6 @@ Password: test
 
 Loads of help in hint.md
 */
-  
-
+  const cartItems = await db.get('SELECT SUM(quantity) AS total FROM cart_items WHERE user_id = ?',[req.session.userId])
+  res.json({totalItems : cartItems.total || 0})
 }  

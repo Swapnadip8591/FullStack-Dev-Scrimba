@@ -49,7 +49,7 @@ export async function getAll(req, res) {
 
 export async function deleteItem(req, res) {
 
-    const db = await getDBConnection();
+  const db = await getDBConnection();
 /*
 Challenge:
 1. When a user clicks the delete button, that item should be deleted from the cart_items table, regardless of quantity.
@@ -58,6 +58,20 @@ Challenge:
 
 hint.md for help!
 */
-  
+  const itemId = parseInt(req.params.itemId, 10)
+
+  if (isNaN(itemId)) {
+    return res.status(400).json({error: 'Invalid item ID'})
+  }
+
+  const item = await db.get('SELECT quantity FROM cart_items WHERE id = ? AND user_id = ?', [itemId, req.session.userId])
+
+  if (!item) {
+    return res.status(400).json({error: 'Item not found'})
+  }
+
+  await db.run('DELETE FROM cart_items WHERE id = ? AND user_id = ?', [itemId, req.session.userId])
+
+  res.status(204).send()
 }
 

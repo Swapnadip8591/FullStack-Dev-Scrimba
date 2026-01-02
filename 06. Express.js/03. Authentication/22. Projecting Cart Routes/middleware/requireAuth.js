@@ -1,4 +1,4 @@
-export function requireAuth() {
+export function requireAuth(req, res, next) {
 /*
 Challenge:
 1. Create middleware that checks if the session has a userId attached to it. 
@@ -10,4 +10,8 @@ Challenge:
 You will need to write code both here and wherever you choose to place the middleware.
 
 */
+  if (!req.session.userId){
+   return res.status(401).json({ error: 'Unauthorized' })
+  }
+  next()
 }

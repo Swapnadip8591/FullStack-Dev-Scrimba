@@ -46,6 +46,17 @@ Challenge:
 
 - You will be able to see the password in the db! We will fix that later!
 */
+    const users = await db.all(`SELECT username, email FROM users WHERE username = ? OR email = ?`,
+      [username, email]
+    )
+    if (users.length){
+      res.status(400).json({ error: 'Email or username already in use.' })
+    } else {
+      await db.run(`INSERT INTO users (name, email, username, password)
+          VALUES (?, ?, ?, ?)`, [name, email, username, password])
+      res.status(201).json({ message: 'User rehistered'})
+    }
+
 
   } catch (err) {
 

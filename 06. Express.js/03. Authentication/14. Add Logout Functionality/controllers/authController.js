@@ -105,5 +105,7 @@ Test with:
 username: test
 password: test
 */
-
+export async function logoutUser(req, res) {
+  req.session.destroy(()=> res.json({ message: 'Logged out' }))
+}
 

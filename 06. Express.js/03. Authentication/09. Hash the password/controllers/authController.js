@@ -1,4 +1,5 @@
 import validator from 'validator'
+import bcryptjs from 'bcryptjs'
 import { getDBConnection } from '../db/db.js'
 
 export async function registerUser(req, res) {
@@ -48,6 +49,8 @@ hint.md for help!
     if (existing) {
       return res.status(400).json({ error: 'Email or username already in use.' })
     }
+
+    password = await bcryptjs.hash(password, 10)
 
     const result = await db.run('INSERT INTO users (name, email, username, password) VALUES (?, ?, ?, ?)', [name, email, username, password])
 

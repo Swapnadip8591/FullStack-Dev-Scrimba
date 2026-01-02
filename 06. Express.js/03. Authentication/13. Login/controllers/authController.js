@@ -80,9 +80,28 @@ password: test
 hint.md for help.
 */
 
+  let { username, password } = req.body
+
+  if (!username || !password) {
+
+    return res.status(400).json({ error: 'All fields are required.' })
+
+  }
+  username = username.trim()
 
   try {
     const db = await getDBConnection()
+    const user = await db.get('SELECT password, id FROM users WHERE username = ?', [username] )
+    if (!user){
+      return res.status(400).json({ error: 'Invalid credentials'})
+    }
+    const result = await bcrypt.compare(password, user.password)
+    if (!result){
+      return res.status(400).json({ error: 'Invalid credentials'})
+    }
+
+    req.session.userId = user.id
+    res.json({ message: 'Logged in' })
 
   } catch (err) {
     console.error('Login error:', err.message)

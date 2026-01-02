@@ -75,4 +75,8 @@ Then click the cart icon to go to the cart page. You should see the user’s ite
 
 Loads of help in hint.md
 */
+  const cartItems = await db.all(`SELECT c.id AS cartItemId, c.quantity, p.title, p.artist, p.price 
+    FROM cart_items c JOIN products p ON c.product_id = p.id WHERE c.user_id = ?`, [req.session.userId])
+  
+  res.json({items: cartItems})
 } 
