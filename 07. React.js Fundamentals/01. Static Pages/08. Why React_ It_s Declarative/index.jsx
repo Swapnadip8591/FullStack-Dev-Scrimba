@@ -19,3 +19,10 @@ Don't use innerHTML to accomplish any of this.
     
 */
 
+const root = document.getElementById('root')
+const heading = document.createElement('h1')
+
+heading.textContent = "Hello, React"
+heading.className = "header"
+
+root.appendChild(heading)

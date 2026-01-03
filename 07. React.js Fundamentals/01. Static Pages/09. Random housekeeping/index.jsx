@@ -6,3 +6,11 @@
  * 2. Use that root to render some JSX. For now, just render
  *    an h1 element that says anything you want.
  */
+
+import { createRoot } from 'react-dom/client'
+
+const root = createRoot(document.getElementById('root'))
+
+root.render(
+    <h1>Hello World</h1>
+)
