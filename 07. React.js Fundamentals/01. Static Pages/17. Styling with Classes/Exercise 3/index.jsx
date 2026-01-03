@@ -4,15 +4,21 @@ const root = createRoot(document.getElementById("root"))
 /**
  * Challenge:
  * 
- * - Add a `nav` > `ul` > `li` (x3). The 3 items should say:
- *   "Pricing", "About", and "Contact"
+ * Move the `width` style off the JSX and into CSS with a dedicated
+ * className on the img element, and change the width to 55px instead
  */
 
 function Header() {
     return (
-        <header>
-            <img src="react-logo.png" width="40px" alt="React logo" />
-            
+        <header className="header">
+            <img src="react-logo.png" className="logo-img" alt="React logo" />
+            <nav>
+                <ul className="nav-list">
+                    <li className="nav-list-item">Pricing</li>
+                    <li className="nav-list-item">About</li>
+                    <li className="nav-list-item">Contact</li>
+                </ul>
+            </nav>
         </header>
     )
 }

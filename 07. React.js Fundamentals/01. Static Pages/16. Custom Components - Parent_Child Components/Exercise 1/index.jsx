@@ -10,12 +10,18 @@ const root = createRoot(document.getElementById("root"))
  * the Page component where the `header` used to be.
  */
 
+function Header() {
+    return (
+        <header>
+            <img src="react-logo.png" width="40px" alt="React logo" />
+        </header>
+    )
+}
+
 function Page() {
     return (
         <>
-            <header>
-                <img src="react-logo.png" width="40px" alt="React logo" />
-            </header>
+            <Header />
             <main>
                 <h1>Reason I am excited to learn React</h1>
                 <ol>

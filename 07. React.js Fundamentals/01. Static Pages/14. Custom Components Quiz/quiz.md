@@ -1,5 +1,5 @@
 1. What is a React component?
-
+Small piece of code which can be reused 
 
 2. What's wrong with this code?
 ```
@@ -9,7 +9,7 @@ function myComponent() {
     )
 }
 ```
-
+Naming convention(MyComponent)
 3. What's wrong with this code?
 ```
 function Header() {
@@ -22,3 +22,4 @@ function Header() {
 
 root.render(Header())
 ```
+Calling(<Header />) correct way

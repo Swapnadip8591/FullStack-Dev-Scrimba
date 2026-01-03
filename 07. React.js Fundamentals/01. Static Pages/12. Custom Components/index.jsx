@@ -10,7 +10,16 @@ const root = createRoot(document.getElementById("root"))
  * 
  * Render the Page component.
  */
+function Page(){
+    return(
+        <ul>
+            <li>Fun to see how to reuse code</li>
+            <li>Large ecosystem</li>
+            <li>Jobs</li>
+        </ul>
+    )
+}
 
 root.render(
-    
+    <Page />
 )
